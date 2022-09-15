@@ -10,14 +10,17 @@ export const withGlobals: DecoratorFunction = (StoryFn, context) => {
   const isInDocs = context.viewMode === "docs";
 
   const outlineStyles = useMemo(() => {
-    const selector = isInDocs ? `#anchor--${context.id}` : ".sb-show-main";
+    const selector = isInDocs
+      ? `#anchor--${context.id} .docs-story`
+      : ".sb-show-main";
     return outlineCSS(selector);
   }, [context.id, isInDocs]);
 
   useEffect(() => {
+    debugger;
     const selectorId = isInDocs
-      ? `addon-outline-docs-${context.id}`
-      : `addon-outline`;
+      ? `my-addon-outline-docs-${context.id}`
+      : `my-addon-outline`;
 
     if (!outlineActive) {
       clearStyles(selectorId);
